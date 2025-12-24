@@ -4,11 +4,11 @@ trigger: none
 pool:
   name : vinod_pool
 
-Stages: 
+stages: 
   - stage: build_stage
     displayName: init_fmt_validate_plan
-    Jobs:
-      - Job: init2plan
+    jobs:
+      - job: init2plan
         displayName: init2plan
         steps: 
         - task: TerraformInstaller@1
@@ -44,8 +44,8 @@ Stages:
 
   - stage: Scan_Stage 
     displayName: init_fmt_validate_plan
-    Jobs:
-      - Job: scan_of_code
+    jobs:
+      - job: scan_of_code
         displayName: tfsec
         steps:
         - task: tfsec@1
@@ -53,8 +53,8 @@ Stages:
             version: 'v1.26.0'
 
 
-  - stage: approval&Apply_Stage
-    displayName: Approval&Apply
+  - stage: approval_Apply_Stage
+    displayName: Approval_Apply
     jobs:
       - job: approval
         pool: server
