@@ -29,13 +29,16 @@ stages:
             provider: 'azurerm'
             command: 'validate'
             workingDirectory: '$(System.DefaultWorkingDirectory)/Environment/Dev'
-
         - task: TerraformTask@5
           inputs:
             provider: 'azurerm'
-            command: 'plan'
+            command: 'init'
+            commandOptions: '-upgrade=false'
             workingDirectory: '$(System.DefaultWorkingDirectory)/Environment/Dev'
-            environmentServiceNameAzureRM: 'vinod_SC'
+            backendServiceArm: 'vinod_SC'
+            backendAzureRmStorageAccountName: 'vinodstg123'
+            backendAzureRmContainerName: 'vinodcontainer'
+            backendAzureRmKey: 'dev.terraform.tfstate'
 
   - stage:
     displayName: scanning_stage
